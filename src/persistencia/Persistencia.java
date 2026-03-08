@@ -22,7 +22,7 @@ public class Persistencia {
                                 m.getCategoria() + ";" +
                                 m.getEstatura() + ";" +
                                 m.isDisponibilidad() + ";" +
-                                m.getContacto() // Agrego contacto que estaba en nuestro modelo
+                                m.getContacto()
                 );
                 bw.newLine();
             }
@@ -43,14 +43,11 @@ public class Persistencia {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] partes = linea.split(";");
-                // Adaptando al orden en que se guardó y a nuestro constructor:
-                // Modelo(nombre, identificacion, contacto, codigoModelo, estatura, categoria,
-                // disponibilidad)
                 String codigoModelo = partes[0];
                 String identificacion = partes[1];
                 String nombre = partes[2];
                 String categoria = partes[3];
-                int estatura = Integer.parseInt(partes[4]); // en el nuevo modelo es int
+                int estatura = Integer.parseInt(partes[4]);
                 boolean disponibilidad = Boolean.parseBoolean(partes[5]);
                 int contacto = (partes.length > 6 && !partes[6].equals("N/A")) ? Integer.parseInt(partes[6]) : 0;
 
@@ -74,8 +71,7 @@ public class Persistencia {
                         f.getNombre() + ";" +
                                 f.getEspecialidad() + ";" +
                                 f.getEspecialidad() + ";" +
-                                f.getAñosExperiencia() + ";" + // Se almacena la experiencia respetando el nombre del
-                                                               // getter de dominio
+                                f.getAñosExperiencia() + ";" +
                                 f.getIdentificacion() + ";" +
                                 f.getContacto());
                 bw.newLine();
@@ -97,8 +93,6 @@ public class Persistencia {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] partes = linea.split(";");
-                // Constructor nuestro: Fotografo(nombre, identificacion, contacto,
-                // especialidad, aniosExperiencia)
                 String nombre = partes[0];
                 String especialidad = partes[1];
                 int aniosExperiencia = Integer.parseInt(partes[2]);
@@ -163,10 +157,6 @@ public class Persistencia {
         }
         return contador;
     }
-
-    // ==========================================
-    // REESCRITURA SIMPLIFICADA (ESTILO ORIGINAL)
-    // ==========================================
 
     public void guardarEventos(Evento[] eventos, int cantidad) {
         try {
